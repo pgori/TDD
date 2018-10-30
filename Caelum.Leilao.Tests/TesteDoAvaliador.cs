@@ -36,5 +36,26 @@ namespace Caelum.Leilao
             Assert.AreEqual(maiorEsperado, leiloeiro.MaiorLance, 0.00001);
             Assert.AreEqual(menorEsperado, leiloeiro.MenorLance, 0.00001);
         }
+
+        [Test]
+        public void MediaDosLancesTest()
+        {
+            //cenario: média de 3 lances
+            Usuario john = new Usuario("John Marston");
+            Usuario hosea = new Usuario("Hosea");
+            Usuario abigail = new Usuario("Abigail");
+
+            Leilao leilao = new Leilao("RDRII");
+
+            leilao.Propoe(new Lance(john, 200.0));
+            leilao.Propoe(new Lance(hosea, 200.0));
+            leilao.Propoe(new Lance(abigail, 200.0));
+
+            Avaliador leiloeiro = new Avaliador();
+
+            double mediaEsperada = 200;
+
+            Assert.AreEqual(mediaEsperada, leiloeiro.MediaDosLances(leilao), 0.00001);
+        }
     }
 }

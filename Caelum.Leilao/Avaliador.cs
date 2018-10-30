@@ -26,6 +26,20 @@ namespace Caelum.Leilao
             }
         }
 
+        public double MediaDosLances(Leilao leilao)
+        {
+            int qnt = leilao.Lances.Count;
+            double soma = 0;
+
+            foreach (var lance in leilao.Lances)
+                soma += lance.Valor;
+
+            if (qnt < 1)
+                throw new Exception("Não pode dividir por zero");
+
+            return soma / qnt;
+        }
+
         public double MaiorLance { get { return maiorDeTodos; }}
         public double MenorLance { get { return menorDeTodos; }}
     }
